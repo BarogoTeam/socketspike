@@ -9,12 +9,12 @@ app.get('/', function(req, res){
 io.emit('some event', { for: 'everyone' });
 
 io.on('connection', function(socket){
-    socket.on('chat message', function(msg){
-      console.log('msg: ' + msg);
-      io.emit('chat message', msg);
+    socket.on('chat message', function(id, data){
+      console.log(id + '/' + data);
+      io.emit('chat message', `[${id}] ${data}`);
     });
 });
 
-http.listen(3000, function(){
+http.listen(4000, function(){
   console.log('listening on *:3000');
 });

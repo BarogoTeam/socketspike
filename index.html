@@ -17,11 +17,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
+        let id = new Date().getTime();
         $(function () {
             var socket = io();
             $('form').submit(function(e){
                 e.preventDefault(); // prevents page reloading
-                socket.emit('chat message', $('#m').val());
+                socket.emit('chat message', id, $('#m').val());
                 $('#m').val('');
                 return false;
             });
